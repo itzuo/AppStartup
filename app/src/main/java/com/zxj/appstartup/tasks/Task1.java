@@ -27,4 +27,14 @@ public class Task1 extends AndroidStartup<String> {
     public List<Class<? extends Startup<?>>> dependencies() {
         return super.dependencies();
     }
+
+    @Override
+    public boolean callCreateOnMainThread() {
+        return false;
+    }
+
+    @Override
+    public boolean waitOnMainThread() {
+        return false;
+    }
 }
