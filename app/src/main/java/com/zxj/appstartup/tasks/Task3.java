@@ -1,6 +1,7 @@
 package com.zxj.appstartup.tasks;
 
 import android.content.Context;
+import android.os.Looper;
 import android.os.SystemClock;
 
 import androidx.annotation.Nullable;
@@ -16,9 +17,11 @@ public class Task3 extends AndroidStartup<Void> {
 
     @Override
     public Void create(Context context) {
-        LogUtils.log("Task3初始化开始");
+        String t = Looper.myLooper() == Looper.getMainLooper()
+                ? "主线程: " : "子线程: ";
+        LogUtils.log(t+"Task3初始化开始");
         SystemClock.sleep(2_000);
-        LogUtils.log("Task3初始化结束");
+        LogUtils.log(t+"Task3初始化结束");
         return null;
     }
 

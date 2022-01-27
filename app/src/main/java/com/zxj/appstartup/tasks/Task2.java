@@ -1,6 +1,7 @@
 package com.zxj.appstartup.tasks;
 
 import android.content.Context;
+import android.os.Looper;
 import android.os.SystemClock;
 
 import com.zxj.appstartup.LogUtils;
@@ -18,9 +19,11 @@ public class Task2 extends AndroidStartup<Void> {
 
     @Override
     public Void create(Context context) {
-        LogUtils.log("Task2初始化开始");
+        String t = Looper.myLooper() == Looper.getMainLooper()
+                ? "主线程: " : "子线程: ";
+        LogUtils.log(t+"Task2初始化开始");
         SystemClock.sleep(800);
-        LogUtils.log("Task2初始化结束");
+        LogUtils.log(t+"Task2初始化结束");
         return null;
     }
 
@@ -34,7 +37,7 @@ public class Task2 extends AndroidStartup<Void> {
 
     @Override
     public boolean callCreateOnMainThread() {
-        return false;
+        return true;
     }
 
     @Override
