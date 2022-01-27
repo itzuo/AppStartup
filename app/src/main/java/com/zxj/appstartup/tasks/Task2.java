@@ -16,14 +16,6 @@ import java.util.List;
  */
 public class Task2 extends AndroidStartup<Void> {
 
-    private List<Class<? extends Startup<?>>> depends;
-
-    public Task2(){
-        depends = new ArrayList<>();
-        //本任务依赖于任务1
-        depends.add(Task1.class);
-    }
-
     @Override
     public Void create(Context context) {
         LogUtils.log("Task2初始化开始");
@@ -34,6 +26,9 @@ public class Task2 extends AndroidStartup<Void> {
 
     @Override
     public List<Class<? extends Startup<?>>> dependencies() {
+        List<Class<? extends Startup<?>>> depends = new ArrayList<>();
+        //本任务依赖于任务1
+        depends.add(Task1.class);
         return depends;
     }
 

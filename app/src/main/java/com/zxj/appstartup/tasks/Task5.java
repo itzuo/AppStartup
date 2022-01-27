@@ -12,9 +12,9 @@ import java.util.List;
 
 public class Task5 extends AndroidStartup<Void> {
 
-    private List<Class<? extends Startup<?>>> depends;
+    private static List<Class<? extends Startup<?>>> depends;
 
-    public Task5(){
+    static {
         depends = new ArrayList<>();
         depends.add(Task3.class);
         depends.add(Task4.class);
