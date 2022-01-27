@@ -18,6 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="${applicationId}.android_startup"
+            android:name=".provider.StartupProvider"
+            android:exported="false">
+            <meta-data android:name="com.zxj.appstartup.tasks.Task5"
+                android:value="android.startup"/>
+        </provider>
     </application>
 
 </manifest>

@@ -19,14 +19,14 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         LogUtils.log("onCreate->start");
-        new StartupManager.Builder()
+        /*new StartupManager.Builder()
                 .addStartup(new Task5())
                 .addStartup(new Task4())
                 .addStartup(new Task3())
                 .addStartup(new Task2())
                 .addStartup(new Task1())
                 .build(this)
-                .start().await();
+                .start().await();*/
         LogUtils.log("onCreate->end");
     }
 }

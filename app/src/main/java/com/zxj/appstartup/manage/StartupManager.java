@@ -23,11 +23,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class StartupManager {
 
     private Context context;
-    private List<AndroidStartup<?>> startupList;
+    private List<Startup<?>> startupList;
     private StartupSortStore startupSortStore;
     private CountDownLatch awaitCountDownLatch;
 
-    public StartupManager(Context context, List<AndroidStartup<?>> startupList,CountDownLatch awaitCountDownLatch) {
+    public StartupManager(Context context, List<Startup<?>> startupList,CountDownLatch awaitCountDownLatch) {
         this.context = context;
         this.startupList = startupList;
         this.awaitCountDownLatch = awaitCountDownLatch;
@@ -73,21 +73,21 @@ public class StartupManager {
     }
 
     public static class Builder{
-        private List<AndroidStartup<?>> startupList = new ArrayList<>();
+        private List<Startup<?>> startupList = new ArrayList<>();
 
         public Builder addStartup(AndroidStartup<?> startup) {
             startupList.add(startup);
             return this;
         }
 
-        public Builder addAllStartup(List<AndroidStartup<?>> startups) {
+        public Builder addAllStartup(List<Startup<?>> startups) {
             startupList.addAll(startups);
             return this;
         }
 
         public StartupManager build(Context context) {
             AtomicInteger needAwaitCount = new AtomicInteger();
-            for (AndroidStartup<?> startup : startupList) {
+            for (Startup<?> startup : startupList) {
                 //记录需要主线程等待完成的异步任务
                 if (!startup.callCreateOnMainThread() && startup.waitOnMainThread()) {
                     needAwaitCount.incrementAndGet();
