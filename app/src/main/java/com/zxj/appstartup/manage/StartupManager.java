@@ -3,12 +3,10 @@ package com.zxj.appstartup.manage;
 import android.content.Context;
 import android.os.Looper;
 
-import com.zxj.appstartup.LogUtils;
 import com.zxj.appstartup.sort.TopologySort;
 import com.zxj.appstartup.startup.AndroidStartup;
-import com.zxj.appstartup.startup.Result;
 import com.zxj.appstartup.startup.Startup;
-import com.zxj.appstartup.startup.StartupRunnable;
+import com.zxj.appstartup.run.StartupRunnable;
 import com.zxj.appstartup.startup.StartupSortStore;
 
 import java.util.ArrayList;

@@ -48,11 +48,17 @@ public class TopologySort {
 
         // 2.1、依次在图中删除这些顶点
         List<Startup<?>> result = new ArrayList<>();// 排序结果
+        List<Startup<?>> main = new ArrayList<>();//主线程执行的任务
+        List<Startup<?>> threads = new ArrayList<>();//子线程执行的任务
         //处理入度为0的任务
         while (!zeroDeque.isEmpty()) {
             Class<? extends Startup> cls = zeroDeque.poll();
             Startup<?> startup = startupMap.get(cls);
-            result.add(startup);
+            if(startup.callCreateOnMainThread()){
+                main.add(startup);
+            }else {
+                threads.add(startup);
+            }
 
             // 2.2、删除后再找出现在0入度的顶点
             if(startupChildrenMap.containsKey(cls)){
@@ -66,6 +72,9 @@ public class TopologySort {
                 }
             }
         }
+        //先添加子线程到result
+        result.addAll(threads);
+        result.addAll(main);
         return new StartupSortStore(result, startupMap, startupChildrenMap);
     }
 }

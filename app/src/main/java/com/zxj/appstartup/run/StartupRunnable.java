@@ -1,10 +1,12 @@
-package com.zxj.appstartup.startup;
+package com.zxj.appstartup.run;
 
 import android.content.Context;
 import android.os.Process;
 
 import com.zxj.appstartup.manage.StartupCacheManager;
 import com.zxj.appstartup.manage.StartupManager;
+import com.zxj.appstartup.startup.Result;
+import com.zxj.appstartup.startup.Startup;
 
 /**
  * @Author zuojie
